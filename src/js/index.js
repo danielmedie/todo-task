@@ -23,6 +23,8 @@ let todos = [
 	}
 ];
 
+
+
 // Define Separate Lists
 let lists = {
 	incompleted: {
@@ -53,6 +55,7 @@ const setupTodoLists = () => {
 	todos.forEach((todo) => {
 		addItemToList(todo)
 	})
+
 }
 
 // Setup Todo Item Element
@@ -89,7 +92,7 @@ const addItemToList = (todo) => {
 	let listKey = todo.completed ? 'completed' : 'incompleted'
 	// get data
 	let listConfig = lists[listKey]
-
+    // todos.sort();
 	// Setup and Append
 	let item = setupTodoItem({
 		value: todo.value,
@@ -148,20 +151,17 @@ const toggleTodo = (todo) => {
 	addItemToList(todo)
 }
 
+const removeTodo = (todo) => {
+    removeItemFromList(todo)
+}
+
 const newTodo = () => {
-	// Get Value
+
 	let newTask = document.getElementById('inputTodo')
 	let newTaskDesc = document.getElementById('inputTodoDesc')
-	// Alert if No Value
+
 	if (!newTask.value) {
-		// alert('No todos created');
         Swal.fire('No todos created')
-        // Swal.fire({
-        //     title: 'Error!',
-        //     text: 'Do you want to continue',
-        //     icon: 'error',
-        //     confirmButtonText: 'Cool'
-        //   })
 		return;
 	}
 
@@ -177,12 +177,6 @@ const newTodo = () => {
 	if (valueExists) {
 		// alert('Todo already exists. Please input a different todo');
         Swal.fire('This todo alredy exists')
-        // Swal.fire({
-        //     title: 'Error!',
-        //     text: 'Do you want to continue',
-        //     icon: 'error',
-        //     confirmButtonText: 'Cool'
-        //   })
 		return;
 	}
 
